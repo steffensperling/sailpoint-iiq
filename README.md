@@ -1,10 +1,16 @@
 Sailpoint Identity IQ Dockerized
 ================================
 
+# Prerequisites
+
+Please note that Identity IQ is closed source so you first need to get a license for Idenity IQ and go to https://community.sailpoint.com/ to download the software. You will put the downloaded identityiq-x.y.zip into the build/src/ directory to get started.
+I provide a dummy file for demo purposes. This does not include ANY Sailpoint proprietary code and can only be used to check if this "dockerization" works.
+
+# Description
+
 Debian Jessie, Oracle JDK 8 and Tomcat 8 based docker container.
 Inspired by dodorka/tomcat
 
-# Description
 Container will run in background, IIQ will be run from mounted volume. 
 
 Includes:
