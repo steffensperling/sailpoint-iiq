@@ -1,0 +1,28 @@
+version: '2'
+services:
+  db:
+    image: mariadb:latest
+    ports: 
+      - "3306:3306"
+    volumes:
+      - '/srv/iiq/db:/var/lib/mysql'
+    environment:
+      - MYSQL_USER=identityiq
+      - MYSQL_PASSWORD=identityiq
+      - MYSQL_DATABASE=identityiq
+      - MYSQL_ROOT_PASSWORD=password
+  iiq:
+    build: ./iiq-build
+    image: sailpoint-iiq
+    ports:
+      - "8080:8080"
+      - "9009:8009"
+    environment:
+      - MYSQL_USER=identityiq
+      - MYSQL_PASSWORD=identityiq
+      - MYSQL_DATABASE=identityiq
+      - MYSQL_ROOT_PASSWORD=password
+    depends_on:
+      - db
+#    volumes:
+#    - "/srv/iiq/webapps/:/opt/tomcat/webapps/"
