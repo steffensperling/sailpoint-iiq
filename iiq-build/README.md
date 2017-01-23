@@ -1,22 +1,58 @@
-# IdentityIQ Maven Build chain
+Sailpoint Identity IQ Dockerized
+================================
+# Prerequisites
 
-based on the article: Creating SailPoint IdentityIQ WAR file with Maven
-24. März 2015 Mario Enrico Ragucci    
-https://www.whisperedshouts.de/dokumente/creating-sailpoint-identityiq-war-file-with-maven
+Please note that Identity IQ is closed source so you first need to get a license for Idenity IQ and go to https://community.sailpoint.com/ to download the software. You will put the downloaded identityiq-x.y.zip into the build/src/ directory to get started.
+I provide a dummy file for demo purposes.
 
-Using SailPoint’s Service Standard Build is okay if you need a quick and easy to setup buildenvironment. However, when you enter projects at bigger companies, you will realize that those companies rely on build systems around git/mercurial and Maven. This is a way of setting up a build using maven.
+# Description
+Debian Jessie, Oracle JDK 8 and Tomcat 8 based docker container.
+Inspired by dodorka/tomcat
 
-To create an IdentityIQ-based web application I decided to create a Maven archetype „iiq-webapp-archetype“. You can find this in the Maven central repository: search.maven.org
+Container will run in background, IIQ will be run from mounted volume. 
 
-This archetype requires to have Release, Patches and ETN checked in to a private repository in a special way.  I decided to store these artifacts using the following structure:
+Includes:
 
-    sailpoint.release:identityiq:6.3:war
-    This is the release version. I checked in the WAR file of the release.
-    sailpoint.patch:identityiq:6.3p3:war
-    This is a patch. Instead of storing it as a JAR file I decided to also store it as a WAR file.
-    sailpoint.etn:identityiq:6.3ETNXYZ:war
-    This is an Efix. Analogue to storing release and patches this has also to be checked in to the repository as a WAR file.
+ - Oracle JDK 1.8.101
+ - Tomcat 8.5.8
+ - Git, wget, curl, build-essential
+ - mariadb database
+ 
+## Docker
+Get started with docker for Windows here: https://docs.docker.com/engine/installation/windows/
+## Volumes
+Exports a volume on `/opt/tomcat/webapps` (if you use this, you need to expand your identityiq.war manually to that directory.
+You can mount the volume on startup to a local directory containing your war file or exploded war directory.
 
-If these requirements are fulfilled the pom itself is self explanatory. I added comments to each of the properties the user has to modify in order to build a release.
+## Ports
+Two ports are exposed:
 
-The „iiqentities-maven-plugin“ basically concatenates all XML files found in src/main/entities.
+ - 8080: default Tomcat port.
+ - 8009: default Tomcat debug port.
+
+Remember to map the ports to the docker host with "docker run" or in docker-compose.yml.
+
+
+# How to run the container
+## Using docker compose
+Build with:
+```
+docker-compose build
+```
+Please do not upload this docker container to a public docker registry: Sailpoint IIQ is closed source and not publicly available.
+
+If you have `docker-compose` installed, you can just launch:
+
+```
+sudo docker-compose up
+```
+
+# Usage
+## Login
+Go to http://localhost:8080/identityiq. 
+User: spadmin
+Password: admin
+
+## A warning regarding admin user for tomcat management console
+Please note that the image contains a `tomcat-users.xml` file, including an `admin` user (password `admin`). For the time being, should you wish to change that, fork this repo and modify the xml file accordingly.
+
