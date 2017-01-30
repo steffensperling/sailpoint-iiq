@@ -2,7 +2,7 @@ FROM debian:jessie
 
 MAINTAINER Steffen Sperling <steffen.sperling@ventum.com>
 
-ENV TOMCAT_VERSION 8.5.8
+ENV TOMCAT_VERSION 8.5.9
 ENV IIQ_VERSION 7.1
 
 # Fix sh
