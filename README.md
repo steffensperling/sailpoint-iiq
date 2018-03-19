@@ -15,8 +15,8 @@ Container will run in background, IIQ will be run from mounted volume.
 
 Includes:
 
- - Oracle JDK 1.8.101
- - Tomcat 8.5.8
+ - Oracle JDK 1.8.1xx (pulling latest version automatically)
+ - Tomcat 8.5.29 (maybe you need to change this to current version)
  - Git, wget, curl, build-essential
  - mariadb database
  
@@ -56,5 +56,5 @@ User: spadmin
 Password: admin
 
 ## A warning regarding admin user for tomcat management console
-Please note that the image contains a `tomcat-users.xml` file, including an `admin` user (password `admin`). For the time being, should you wish to change that, fork this repo and modify the xml file accordingly.
-
+* Please note that the image contains a `tomcat-users.xml` file, including an `admin` user (password `admin`). For the time being, should you wish to change that, fork this repo and modify the xml file accordingly.
+* The manager application is accessible from all hosts, an appropriate configuration was deployed to /opt/tomcat/conf/Catalina/localhost/manager.xml

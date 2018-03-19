@@ -5,7 +5,7 @@ services:
     ports: 
       - "3306:3306"
     volumes:
-      - '/srv/iiq/db:/var/lib/mysql'
+      - '/srv/sailpoint-docker/db:/var/lib/mysql'
     environment:
       - MYSQL_USER=identityiq
       - MYSQL_PASSWORD=identityiq
@@ -25,4 +25,4 @@ services:
     depends_on:
       - db
 #    volumes:
-#    - "/srv/iiq/webapps/:/opt/tomcat/webapps/"
+#    - "/srv/sailpoint-docker/webapps/:/opt/tomcat/webapps/"

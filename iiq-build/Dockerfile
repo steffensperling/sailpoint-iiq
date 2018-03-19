@@ -2,8 +2,8 @@ FROM debian:jessie
 
 MAINTAINER Steffen Sperling <steffen.sperling@ventum.com>
 
-ENV TOMCAT_VERSION 8.5.9
-ENV IIQ_VERSION 7.1
+ENV TOMCAT_VERSION 8.5.29
+ENV IIQ_VERSION 7.2
 
 # Fix sh
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
@@ -37,6 +37,8 @@ rm -rf /opt/tomcat/webapps/ROOT
 
 # Add admin/admin user
 ADD tomcat-users.xml /opt/tomcat/conf/
+run mkdir -p /opt/tomcat/conf/Catalina/localhost
+ADD manager.xml /opt/tomcat/conf/Catalina/localhost
 # add IIQ
 COPY src/identityiq-${IIQ_VERSION}.zip /tmp
 RUN unzip /tmp/identityiq-${IIQ_VERSION}.zip identityiq.war && \
