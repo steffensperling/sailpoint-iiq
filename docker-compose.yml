@@ -4,8 +4,8 @@ services:
     image: mariadb:latest
     ports: 
       - "3306:3306"
-    volumes:
-      - '/srv/sailpoint-docker/db:/var/lib/mysql'
+#    volumes:
+#      - '/srv/sailpoint-docker/db:/var/lib/mysql'
     environment:
       - MYSQL_USER=identityiq
       - MYSQL_PASSWORD=identityiq
@@ -15,7 +15,7 @@ services:
     build: ./iiq-build
     image: sailpoint-iiq
     ports:
-      - "8080:8080"
+      - "8888:8080"
       - "9009:8009"
     environment:
       - MYSQL_USER=identityiq
