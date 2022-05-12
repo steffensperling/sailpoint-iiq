@@ -1,11 +1,11 @@
 version: '2'
 services:
   db:
-    image: mariadb:latest
+    image: mariadb:10.7
     ports: 
       - "3306:3306"
     volumes:
-      - '/srv/sailpoint-docker/db:/var/lib/mysql'
+      - 'db:/var/lib/mysql'
     environment:
       - MYSQL_USER=identityiq
       - MYSQL_PASSWORD=identityiq
@@ -24,5 +24,7 @@ services:
       - MYSQL_ROOT_PASSWORD=password
     depends_on:
       - db
-#    volumes:
-#    - "/srv/sailpoint-docker/webapps/:/opt/tomcat/webapps/"
+
+volumes:
+   db:
+      

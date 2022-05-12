@@ -8,22 +8,21 @@ I provide a dummy file for demo purposes. This does not include ANY Sailpoint pr
 
 # Description
 
-Debian Jessie, Oracle JDK 8 and Tomcat 8 based docker container.
+OpenJDK 11 and Tomcat 9 based docker container.
 Inspired by dodorka/tomcat
 
 Container will run in background, IIQ will be run from mounted volume. 
 
 Includes:
 
- - Oracle JDK 1.8.1xx (pulling latest version automatically)
- - Tomcat 8.5.29 (maybe you need to change this to current version)
- - Git, wget, curl, build-essential
- - mariadb database
+ - Oracle JDK 10 (pulling latest version automatically)
+ - Tomcat 9 (maybe you need to change this to current version)
+ - mariadb database (separate container, see docker-compose.yml
  
 ## Docker
 Get started with docker for Windows here: https://docs.docker.com/engine/installation/windows/
 ## Volumes
-Exports a volume on `/opt/tomcat/webapps` (if you use this, you need to expand your identityiq.war manually to that directory.
+Exports a volume on `/usr/local/tomcat/webapps` (if you use this, you need to expand your identityiq.war manually to that directory.
 You can mount the volume on startup to a local directory containing your war file or exploded war directory.
 
 ## Ports
